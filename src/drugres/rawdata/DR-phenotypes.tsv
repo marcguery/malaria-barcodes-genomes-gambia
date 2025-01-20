@@ -1,0 +1,7 @@
+Gene	AA	AAsen	AAres	Drug	Group	Name
+PF3D7_0417200	108	S	N	pyrimethamine	2	DHFR
+PF3D7_0523000	86	N	Y	chloroquine,amodiaquine,lumefantrine,mefloquine	5	MDR1
+PF3D7_0629500	258	S	L	chloroquine	9	AAT1
+PF3D7_0709000	76	K	T	chloroquine	6	CRT
+PF3D7_0810800	437	A	G	sulfadoxine	3	DHPS
+PF3D7_1343700	580	C	Y	artemisinin	1	K13
