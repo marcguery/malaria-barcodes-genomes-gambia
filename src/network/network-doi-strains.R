@@ -23,8 +23,9 @@ seasonnames <- c("Low", "High")
 
 #Epidemiologic data
 posneg <- read.csv("rawdata/pf-test.csv")
-colnames(posneg) <- c("ParticipantID", "sampleID", "date", "infectivity", "Cohort")
-posneg$date <- as.Date(posneg$date)
+colnames(posneg) <- c("sampleID", "ParticipantID", "Cohort",
+                      "date", "collection", "infectivity", "treatment")
+posneg$date <- as.Date(paste0(posneg$date, "-01"))
 posneg$infectivity[posneg$sampleID%in%nodes$ID] <- "POS"
 ######################################################
 
