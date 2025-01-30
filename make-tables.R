@@ -34,7 +34,7 @@ barcodes.consensus <- read.csv("src/read/out/barcodes-consensus.csv", h = T)
 uniquebarcodes <- read.csv("src/network/out/unique-barcodes.csv", h = T)[,c(1,2)]
 uniquebarcodes[,2] <- "TRUE"
 barcodes <- merge(barcodes, barcodes.consensus[,-which(colnames(barcodes.consensus)%in%c("Date", "Study"))], 
-                  by.x = "Barcode_ID", by.y = "ID", all = T)
+                  by.x = "Barcode_ID", by.y = "ID", all.x = T)
 barcodes <- merge(barcodes, uniquebarcodes, 
                   by.x = "Barcode_ID", by.y = "ID1", all.x = T)
 barcodes$score1[is.na(barcodes$score1)] <- "FALSE" 
