@@ -21,8 +21,9 @@ snps.consensus$order <- c(1:nrow(snps.consensus))
 snps <- merge(snps, snps.consensus[,c("CHROM", "POS", "order")], 
               by.x = c("Chromosome", "Position"),
               by.y = c("CHROM", "POS"), all.x = T)
-colnames(snps) <- c("Locus_ID",	"Chromosome",	"Position",	
+colnames(snps) <- c("Chromosome",	"Position",	"Locus_ID",
                     "Barcode order",	"Consensus barcode order")
+snps <- snps[,c(3,1,2,4,5)]
 snps <- snps[order(snps[["Barcode order"]]),]
 
 write.csv(snps, "tables/ST3-snps.csv", quote = F, row.names = F)
