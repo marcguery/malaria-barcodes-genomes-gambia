@@ -177,7 +177,8 @@ gg <- ggplot(data = accuracy.both)+
         legend.title = element_text(face = "bold"),
         legend.position = "top")
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-vs-pairwise-accuracy.png"),
+ggsave(paste0("out/IBDcorr/", minsites, 
+              "minsites/ibd-vs-pairwise-accuracy.", imgfmt),
        width = 11, height = 5.5, dpi = 300)
 
 gg <- ggplot(edges.both[edges.both$fract_sites_IBD.barcode>=0 & edges.both$fract_sites_IBD.wgs >= 0,])+
@@ -207,7 +208,7 @@ gg <- ggplot(edges.both[edges.both$fract_sites_IBD.barcode>=0 & edges.both$fract
         legend.position = "top",
         legend.key = element_blank())
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-correlation.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-correlation.", imgfmt),
        width = 10, height = 7, dpi = 500)
 
 gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites_IBD.barcode>=0 & edges.both$fract_sites_IBD.wgs >= 0,])+
@@ -235,7 +236,7 @@ gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites
         legend.position = "top",
         legend.key = element_blank())
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviation.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviation.", imgfmt),
        width = 10, height = 7, dpi = 500)
 
 gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites_IBD.barcode>=0 & edges.both$fract_sites_IBD.wgs >= 0,])+
@@ -255,7 +256,7 @@ gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites
         legend.position = "none",
         legend.key = element_blank())
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-bw.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-bw.", imgfmt),
        width = 10, height = 7, dpi = 500)
 
 gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites_IBD.barcode>=0 & edges.both$fract_sites_IBD.wgs >= 0,])+
@@ -270,7 +271,7 @@ gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites
         legend.title = element_text(face = "bold"),
         legend.position = "top")
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviationprop.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviationprop.", imgfmt),
        width = 10, height = 7, dpi = 500)
 
 gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites_IBD.barcode>=0.5 & edges.both$fract_sites_IBD.wgs >= 0,])+
@@ -285,7 +286,7 @@ gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites
         legend.title = element_text(face = "bold"),
         legend.position = "top")
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviationprop0.5.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviationprop0.5.", imgfmt),
        width = 10, height = 7, dpi = 500)
 
 gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites_IBD.barcode>=0 & edges.both$fract_sites_IBD.wgs >= 0,])+
@@ -310,7 +311,7 @@ gg <- ggplot(edges.both[!is.na(edges.both$accuracy.IBD) & edges.both$fract_sites
         legend.title = element_text(face = "bold"),
         legend.position = "top")
 gg
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviation.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/ibd-deviation.", imgfmt),
        width = 10, height = 7, dpi = 500)
 
 
@@ -333,7 +334,7 @@ gg <- ggplot(edges.both[edges.both$pairwise>=0 & edges.both$fract_sites_IBD.wgs 
   scale_y_continuous(limits = c(0,1), n.breaks = 10, expand = c(0.01,0))
 gg
 
-ggsave(paste0("out/IBDcorr/", minsites, "minsites/pairwise-correlation.png"),
+ggsave(paste0("out/IBDcorr/", minsites, "minsites/pairwise-correlation.", imgfmt),
        width = 10, height = 7, dpi = 500)
 ############################
 

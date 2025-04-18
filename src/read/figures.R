@@ -59,7 +59,8 @@ gg <- ggplot(wgsdata)+
         axis.title.x = element_blank(),
         axis.text = element_text(color = "black"))
 gg
-ggsave("out/homozygous-wgs.png", width = 5, height = 6, dpi = 400)
+ggsave(paste0("out/homozygous-wgs.", imgfmt), 
+       width = 5, height = 6, dpi = 400)
 
 gg <- ggplot(barcodedata)+
   geom_boxplot(aes(x = factor(Study), y = 89 - Ns - Xs))+
@@ -75,7 +76,8 @@ gg <- ggplot(barcodedata)+
         axis.title.x = element_blank(),
         axis.text = element_text(color = "black"))
 gg
-ggsave("out/homozygous-barcodes.png", width = 12, height = 6, dpi = 400)
+ggsave(paste0("out/homozygous-barcodes.", imgfmt), 
+       width = 12, height = 6, dpi = 400)
 
 barcodedata <- barcodedata[,-c(which(colnames(barcodedata) == "Study"))]
 malariagendata <- merge(barcodedata, wgsdata, by.x = "ID", by.y = "Genome_ID", all = T)
@@ -194,7 +196,8 @@ gg <- ggplot(malariagendata)+
         legend.title = element_text(face = "bold"),
         legend.key = element_blank(),
         legend.key.size = unit(1, 'cm'))
-ggsave("out/high-quality-WGS-barcodes.png", width = 22, height = 7)
+ggsave(paste0("out/high-quality-WGS-barcodes.", imgfmt), 
+       width = 22, height = 7, dpi = 400)
 
 cols <- brewer.pal(4, "Set1")
 gg <- ggplot(malariagendata)+
@@ -286,7 +289,8 @@ gg <- ggplot(malariagendata)+
         legend.title = element_text(face = "bold"),
         legend.key = element_blank(),
         legend.key.size = unit(1, 'cm'))
-ggsave("out/high-quality-WGS-barcodes-villages.png", width = 22, height = 7)
+ggsave(paste0("out/high-quality-WGS-barcodes-villages.", imgfmt),
+       width = 22, height = 7, dpi = 400)
 ############################################
 
 ######################FILTERING 21 BAD GENOTYPED SNPS######################
@@ -307,17 +311,20 @@ agreementplot <- ggplot()+
 
 #Agreement of each of the 101 SNPs between barcodes and WGS
 gg <- agreementplot %+% snps.raw[!is.na(snps.raw$Agreement) & !is.nan(snps.raw$Agreement),]
-ggsave("out/Agreement-WGS-molecular.png", width = 8, height = 5, dpi = 300)
+ggsave(paste0("out/Agreement-WGS-molecular.", imgfmt),
+       width = 8, height = 5, dpi = 400)
 
 
 sort(snps.raw.before1605[!is.na(snps.raw.before1605$Agreement) & !is.nan(snps.raw.before1605$Agreement),"Agreement"])
 snps.raw.before1605[!is.na(snps.raw.before1605$Agreement) & !is.nan(snps.raw.before1605$Agreement),]
 gg <- agreementplot %+% snps.raw.before1605[!is.na(snps.raw.before1605$Agreement) & !is.nan(snps.raw.before1605$Agreement),]
-ggsave("out/Agreement-WGS-molecular-before1605.png", width = 8, height = 5, dpi = 300)
+ggsave(paste0("out/Agreement-WGS-molecular-before1605.", imgfmt),
+       width = 8, height = 5, dpi = 400)
 
 sort(snps.raw.after1605[!is.na(snps.raw.after1605$Agreement) & !is.nan(snps.raw.after1605$Agreement),"Agreement"])
 gg <- agreementplot %+% snps.raw.after1605[!is.na(snps.raw.after1605$Agreement) & !is.nan(snps.raw.after1605$Agreement),]
-ggsave("out/Agreement-WGS-molecular-after1605.png", width = 8, height = 5, dpi = 300)
+ggsave(paste0("out/Agreement-WGS-molecular-after1605.", imgfmt),
+       width = 8, height = 5, dpi = 400)
 
 #PLOT
 heatmapplot <- ggplot()+
@@ -355,7 +362,7 @@ bcodescores.before1605.melt <- melt(bcodescores.before1605,
                                     varnames = c("SNP", "Sample"), value.name = "Score")
 
 gg <- heatmapplot %+% bcodescores.before1605.melt
-ggsave("out/before-removal-before0516.png", plot = gg,
+ggsave(paste0("out/before-removal-before0516.", imgfmt), plot = gg,
        width = 20, height = 14, dpi = 400)
 #These 21 bad SNPs correlate badly with WGS SNP after May 2016
 bcodescores.after1605 <- bcodescores[,dateperbarcode > 1605]
@@ -363,7 +370,7 @@ bcodescores.after1605.melt <- melt(bcodescores.after1605,
                                    varnames = c("SNP", "Sample"), value.name = "Score")
 
 gg <- heatmapplot %+% bcodescores.after1605.melt
-ggsave("out/before-removal-after0516.png", plot = gg,
+ggsave(paste0("out/before-removal-after0516.", imgfmt), plot = gg,
        width = 20, height = 32, dpi = 400)
 
 #Before May 2016 (consensus barcodes)
@@ -372,7 +379,7 @@ bcodescores.cons.before1605.melt <- melt(bcodescores.cons.before1605,
                                              varnames = c("SNP", "Sample"), value.name = "Score")
 
 gg <- heatmapplot %+% bcodescores.cons.before1605.melt
-ggsave("out/after-removal-before0516.png", plot = gg,
+ggsave(paste0("out/after-removal-before0516.", imgfmt), plot = gg,
        width = 20, height = 14, dpi = 400)
 
 #After May 2016 (consensus barcodes)
@@ -381,7 +388,7 @@ bcodescores.cons.after1605.melt <- melt(bcodescores.cons.after1605,
                                          varnames = c("SNP", "Sample"), value.name = "Score")
 
 gg <- heatmapplot %+% bcodescores.cons.after1605.melt
-ggsave("out/after-removal-after0516.png", plot = gg,
+ggsave(paste0("out/after-removal-after0516.", imgfmt), plot = gg,
        width = 20, height = 32, dpi = 400)
 
 #Stats about number of samples that recovered > 0 one of the 21 SNPs after consensus

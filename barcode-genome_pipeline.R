@@ -35,6 +35,7 @@ library("RColorBrewer")
 library("cowplot")
 
 options(stringsAsFactors = F, tz="GMT")
+imgfmt <- "tiff" #image extension without the "."
 setwd("./src/read")
 ###########################1. READ###########################
 setwd("../read")
@@ -59,7 +60,7 @@ source("WGS-SNPs.R") #Load WGS whole good quality SNPs
 #Quite long to run, comment after first run:
 source("get-comp-sites.R") #Calculate the number of comparable sites between barcodes
 source("figures.R")
-rm(list=ls())
+rm(list=setdiff(ls(), c("imgfmt")))
 ######################################################
 ###########################2. HMMIBD###########################
 setwd("../hmmibd")
@@ -69,7 +70,7 @@ hmmibdwgssnps.filename <- "hmmIBD-WGS-snps.tsv"
 source("functions.R") #Various functions used in this step
 source("formathmm-barcodes.R") #Format barcode data for hmmIBD
 source("formathmm-WGS-snps.R") #Format WGS SNP data for hmmIBD
-rm(list=ls())
+rm(list=setdiff(ls(), c("imgfmt")))
 #system("./run-hmmibd-local.sh", wait=FALSE) #uncomment to run hmmIBD
 
 ######################################################
@@ -80,7 +81,7 @@ source("functions.R") #Various functions used in this step
 wgs.hmmfile <- "IBD-WGS.hmm_fract.txt.zip"
 mininfsites <- 100
 source("WGS-network.R") #Create network from WGS SNPs
-rm(list=ls())
+rm(list=setdiff(ls(), c("imgfmt")))
 source("functions.R") #Various functions used in this step
 barcode.hmmfile <- "IBD-barcodes.hmm_fract.txt.zip"
 clusterIBDmin <- 0.5
@@ -93,7 +94,7 @@ source("diversity.R")  #Get the distribution of IBD values
 removecontinf <- F #Revert back to network without removal of oversampling
 source("group-network.R") #Group samples by location and date
 source("figures.R")
-rm(list=ls())
+rm(list=setdiff(ls(), c("imgfmt")))
 ######################################################
 
 ###########################4. DRUG RES###########################
@@ -103,7 +104,7 @@ source("WGS-DR.R") #Format drug resistance markers from WGS
 source("barcode-DR.R") #Format durg resistance markers from barcodes
 source("DR-consensus.R") #Combine WGS and barcode data
 source("figures.R") #Statistics of drug resistance prevalence
-rm(list = ls())
+rm(list=setdiff(ls(), c("imgfmt")))
 ######################################################
 
 ###########################5. COI###########################
@@ -112,7 +113,7 @@ minsnpnum <- 3750 #Weird cutoff for legacy purposes (see 1.READ section)
 source("fws.R") #Calculate Fws according to Manske et al. 2012
 source("heteroloci.R") #Calculate the proportion of Ns in each barcode/WGS
 source("figures.R")
-rm(list = ls())
+rm(list=setdiff(ls(), c("imgfmt")))
 ######################################################
 
 

@@ -50,7 +50,8 @@ gg <- ggplot(diversity)+
         plot.background = element_blank(),
         axis.text = element_text(color = "black"))
 gg
-ggsave("out/logdiversity-IBD.png", width = 10, height = 3.5)
+ggsave(paste0("out/logdiversity-IBD.", imgfmt),
+       width = 10, height = 3.5, dpi = 400)
 
 gg <- ggplot(diversity)+
   geom_bar(aes(x = floor(fract_sites_IBD*20)/20,
@@ -79,7 +80,7 @@ gg <- ggplot(diversity)+
         axis.text = element_text(color = "black"))
 gg
 
-ggsave("out/diversity-IBD.png", width = 7, height = 3.5)
+ggsave(paste0("out/diversity-IBD.", imgfmt), width = 7, height = 3.5, dpi = 400)
 
 gg <- ggplot(diversity)+
   geom_bar(aes(x = floor(fract_sites_IBD*20)/20,
@@ -107,7 +108,7 @@ gg <- ggplot(diversity)+
         plot.background = element_blank(),
         axis.text = element_text(color = "black"))
 gg
-ggsave("out/diversity-IBD-zoom.png", width = 7, height = 3.5)
+ggsave(paste0("out/diversity-IBD-zoom.", imgfmt), width = 7, height = 3.5, dpi = 400)
 
 nrow(diversity[diversity$fract_sites_IBD > 0.5,])/
   nrow(diversity)

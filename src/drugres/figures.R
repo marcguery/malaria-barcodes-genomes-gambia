@@ -47,7 +47,8 @@ gg <- ggplot(data = drugres.cons.improvedbc[drugres.cons.improvedbc$ShortMarker!
         legend.position = "right",
         legend.spacing.y = unit(0.5, "cm"))
 gg
-ggsave("out/DR_agreement.png", width = 8, height = 6, dpi = 500)
+ggsave(paste0("out/DR_agreement.", imgfmt),
+       width = 8, height = 6, dpi = 500)
 
 
 drugres.cons.filtered <- drugres.cons.summary[!drugres.cons.summary$ShortMarker.Cons%in%c("X"),]
@@ -154,6 +155,8 @@ drugres.cons.pooledstats <- drugres.cons.grouped%>%
 ###
 
 dim(drugres.cons.grouped)
+length(which(drugres.cons.grouped$ntot<5))
+summary(drugres.cons.grouped$ntot[drugres.cons.grouped$ntot>=5])
 axisshift <- 1/14
 gg <- ggplot(drugres.cons.grouped[drugres.cons.grouped$ntot>=5 & drugres.cons.grouped$Name!="K13",]) +
   geom_rect(data=seasons.narrow, aes(ymin=-Inf, ymax=Inf, 
@@ -303,8 +306,10 @@ gg <- gg+
            y=-axisshift+0.02,
            yend=-axisshift+0.02,
            color ="grey60")
+gg
   
-ggsave("out/DR-consensus-prevalence.png", width = 13, height = 8, dpi = 400)
+ggsave(paste0("out/DR-consensus-prevalence.", imgfmt), 
+       width = 13, height = 8, dpi = 400)
 
 drugres.cons.grouped.DHPS.1 <- drugres.cons.grouped %>%
   filter(ntot>=5 & date >= as.Date("2014-12-01") & date <= as.Date("2016-07-01") & Name == "DHPS")

@@ -58,7 +58,8 @@ gg <- ggplot(edges.grouped.datecompound)+
         panel.grid.major.x = element_blank(),
         axis.text = element_text(color = "black"))
 gg
-ggsave(paste0(outfolder, "IBD-decrease-time.png"), gg, width = 12, height = 6)
+ggsave(paste0(outfolder, "IBD-decrease-time.", imgfmt), gg, 
+       width = 12, height = 6, dpi = 500)
 
 gg <- ggplot(edges.grouped.datecompound)+
   geom_boxplot(aes(x=group, 
@@ -133,7 +134,7 @@ gg <- ggplot(edges.grouped.datecompound)+
         axis.text = element_text(color = "black"))
 
 gg
-ggsave(paste0(outfolder, "compound-time.png"), gg, width = 12, height = 6)
+ggsave(paste0(outfolder, "compound-time.", imgfmt), gg, width = 12, height = 6, dpi = 500)
 
 my_gradient <- brewer.pal(n = 9, "PuBu")
 starcol <- my_gradient[7]
@@ -192,8 +193,8 @@ gg <- ggplot(edges.grouped.date.1season)+
         axis.text = element_text(color = "black", size = 15),
         panel.grid.major.y = element_line(color = "grey70", linetype = 3))
 gg
-ggsave(paste0(outfolder, "wetdry-comparison.png"), plot = gg,
-       width = 9, height = 5, dpi = 400)
+ggsave(paste0(outfolder, "wetdry-comparison.", imgfmt), plot = gg,
+       width = 9, height = 5, dpi = 500)
 
 seasons.combination.nocoh$groups <- factor(paste0(seasons.combination.nocoh$season1, 
                                                   seasons.combination.nocoh$season2),
@@ -398,6 +399,6 @@ gg <- ggplot(data = edges.grouped.date)+
         axis.line = element_blank(),
         legend.background = element_rect(color = "grey20", linewidth = 0.5))
 gg
-ggsave(paste0(outfolder, "seasons-combinations.png"), plot = gg,
-       width = 10, height = 10, dpi = 400)
+ggsave(paste0(outfolder, "seasons-combinations.", imgfmt), plot = gg,
+       width = 10, height = 10, dpi = 500)
 ##################################

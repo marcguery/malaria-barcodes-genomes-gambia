@@ -47,7 +47,8 @@ gg <- ggplot(coi[!is.na(coi$prop.WGS) & !is.na(coi$Fws),])+
         axis.text = element_text(color = "black"),
         axis.ticks.x = element_blank())
 gg
-ggsave("out/NsGenomes-Fws.png", width = 8, height = 5, units = "in", dpi = 500)
+ggsave(paste0("out/NsGenomes-Fws.", imgfmt),
+       width = 8, height = 5, units = "in", dpi = 500)
 
 gg <- ggplot(coi[!is.na(coi$prop.SNP) & !is.na(coi$Fws),])+
   geom_blank(aes(x = prop.SNP,
@@ -76,7 +77,8 @@ gg <- ggplot(coi[!is.na(coi$prop.SNP) & !is.na(coi$Fws),])+
         axis.text = element_text(color = "black"),
         axis.ticks.x = element_blank())
 gg
-ggsave("out/NsBarcodes-Fws.png", width = 8, height = 5, units = "in", dpi = 500)
+ggsave(paste0("out/NsBarcodes-Fws.", imgfmt), 
+       width = 8, height = 5, units = "in", dpi = 500)
 
 coi$date <- paste0(substr(coi$ID, 10, 13),"01")
 
@@ -140,6 +142,8 @@ coiprop.melted$errwilson <- binom.confint(round(coiprop.melted$COI*coiprop.melte
 axisshift <- 0.11
 spread <- seq(-3,3, length.out = length(unique(coiprop.melted$Method)))
 
+length(which(coiprop.melted$Numobs<5))
+summary(coiprop.melted$Numobs[coiprop.melted$Numobs>=5])
 cols <- brewer.pal(3, "Set1")
 
 gg <- ggplot(data=coiprop.melted[coiprop.melted$Numobs>=5,])+
@@ -265,7 +269,8 @@ gg <- ggplot(data=coiprop.melted[coiprop.melted$Numobs>=5,])+
         text = element_text(size = 17),
         panel.background = element_blank())
 gg
-ggsave("out/coiprop-methods.png", width = 12, height = 6, units = "in", dpi = 400)
+ggsave(paste0("out/coiprop-methods.", imgfmt), 
+       width = 12, height = 6, units = "in", dpi = 400)
 #Estimates of proportion of monoclonal infections from:
 #FWS on WGS 27k SNPs
 round(length(which(coi$Fws>=0.95))/nrow(coi[!is.na(coi$Fws),]),2)

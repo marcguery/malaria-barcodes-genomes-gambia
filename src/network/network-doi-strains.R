@@ -238,7 +238,7 @@ gg <- ggplot(lineages)+
         legend.key = element_blank())
   
 gg
-ggsave(paste0("out/doi-", sub("\\.", "", as.character(ibdcutoff), perl = F), ".png"),
+ggsave(paste0("out/doi-", sub("\\.", "", as.character(ibdcutoff), perl = F), ".", imgfmt),
        width = 15, height = 9, dpi = 600)
 
 #Ranks of individuals by duration of infection
@@ -311,6 +311,6 @@ gg <- ggplot(lineages)+
         axis.ticks.x = element_blank(),
         axis.text = element_text(color = "black"))
 gg
-ggsave("out/doi-age.png", width = 8, height = 6, dpi = 350)
+ggsave(paste0("out/doi-age.", imgfmt), width = 8, height = 6, dpi = 350)
 
 ######################################################

@@ -67,7 +67,8 @@ gg <- ggplot(data = nnumbers.summary[nnumbers.summary$alignment%in%c("nn", "nl")
         panel.grid = element_line(linetype = 3, color = "grey70"))
 gg
 #This corresponds to 0.8 of minimal majority allele called
-ggsave("out/wgs-barcode-cutoff.png", width = 10, height = 5, dpi = 300)
+ggsave(paste0("out/wgs-barcode-cutoff.", imgfmt), 
+       width = 10, height = 5, dpi = 400)
 
 rm(minprop)
 ######################################################
